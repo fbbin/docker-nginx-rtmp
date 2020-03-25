@@ -156,8 +156,9 @@ COPY --from=build-ffmpeg /usr/lib/libfdk-aac.so.2 /usr/lib/libfdk-aac.so.2
 # Add NGINX path, config and static files.
 ENV PATH "${PATH}:/usr/local/nginx/sbin"
 ADD nginx.conf /etc/nginx/nginx.conf.template
-RUN mkdir -p /opt/data && mkdir /www
+RUN mkdir -p /opt/data && mkdir -p /opt/certs && mkdir /www
 ADD static /www/static
+ADD certs /opt/certs
 
 EXPOSE 1935
 EXPOSE 80
